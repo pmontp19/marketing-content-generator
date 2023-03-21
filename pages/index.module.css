@@ -35,3 +35,26 @@
 .main .result {
   margin-top: 40px;
 }
+.vtmn-btn {
+  margin-bottom: var(--vtmn-spacing_6);
+}
+.cardExample {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  box-shadow: var(--vtmn-shadow_100);
+  border-radius: var(--vtmn-radius_200);
+  margin-bottom: var(--vtmn-spacing_6);
+  background-color: var(--vtmn-semantic-color_background-primary);
+}
+.cardExample_body {
+  padding: var(--vtmn-spacing_4);
+  width: 100%;
+}
+.boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+}
