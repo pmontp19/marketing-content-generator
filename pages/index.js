@@ -12,11 +12,19 @@ export default function Home() {
   const [type, setType] = useState('')
   const [loading, setLoading] = useState(false)
   const [language, setLanguage] = useState('es-es')
+  const [modalOpen, setModalOpen] = useState(true)
+  const [apikey, setApiKey] = useState('')
 
   async function onSubmit(event) {
     event.preventDefault()
     try {
       setLoading(true)
+      if (result) {
+        setAsunto('')
+        setMensaje('')
+        setResult('')
+  
+      }
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: {
@@ -26,7 +34,8 @@ export default function Home() {
           type: type,
           subject: subject,
           date: eventDate,
-          language: language
+          language: language,
+          apikey: apikey
         })
       })
 
@@ -185,6 +194,47 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <div class="block">
+        <dialog
+          open={modalOpen}
+          class="vtmn-modal"
+          id="modal-1"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="vtmn-modal-title"
+          aria-describedby="vtmn-modal-description"
+        >
+          <div class="vtmn-modal_content">
+            <div class="vtmn-modal_content_title">
+              <span
+                id="vtmn-modal-title"
+                class="vtmn-modal_content_title--text"
+              >
+                OpenAI API key
+              </span>
+            </div>
+            <div class="vtmn-modal_content_body">
+              <label className="vtmn-text-input_label">
+                API Key
+                <input
+                  className="vtmn-text-input"
+                  type="text"
+                  onChange={(e) => setApiKey(e.target.value)}
+                ></input>
+              </label>
+            </div>
+            <div class="vtmn-modal_content_actions">
+              <button
+                class="vtmn-btn vtmn-btn_variant--primary"
+                disabled={!apikey}
+                onClick={(e) => setModalOpen(false)}
+              >
+                Guardar
+              </button>
+            </div>
+          </div>
+        </dialog>
+      </div>
     </div>
   )
 }
