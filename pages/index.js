@@ -1,9 +1,10 @@
 import '@vtmn/css/dist/index.css'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './index.module.css'
+import { server } from '../config'
 
-export default function Home() {
+export default function Home({ status }) {
   const [subject, setSubject] = useState('')
   const [result, setResult] = useState()
   const [asunto, setAsunto] = useState()
@@ -12,8 +13,14 @@ export default function Home() {
   const [type, setType] = useState('')
   const [loading, setLoading] = useState(false)
   const [language, setLanguage] = useState('es-es')
-  const [modalOpen, setModalOpen] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
   const [apikey, setApiKey] = useState('')
+
+  useEffect(() => {
+    if (status !== 200) {
+      setModalOpen(true)
+    }
+  }, [])
 
   async function onSubmit(event) {
     event.preventDefault()
@@ -159,7 +166,7 @@ export default function Home() {
               <div
                 className={`vtmn-card vtmn-card_variant--top-image ${styles.cardExample}`}
               >
-                <div class="vtmn-card_image">
+                <div className="vtmn-card_image">
                   <img
                     src="https://storage.googleapis.com/dkt-design-cdn/images/landscape-placeholder.jpg"
                     alt=""
@@ -234,4 +241,15 @@ export default function Home() {
       </div>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const res = await fetch(server + '/api/check')
+  const status = await res.status
+
+  return {
+    props: {
+      status
+    }
+  }
 }
