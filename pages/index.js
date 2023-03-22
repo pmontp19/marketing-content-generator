@@ -220,12 +220,13 @@ export default function Home({ status }) {
             <div class="vtmn-modal_content_body">
               <label className="vtmn-text-input_label">
                 API Key
+              </label>
                 <input
-                  className="vtmn-text-input"
-                  type="text"
+                  className={`vtmn-text-input ${styles.apikey}`}
+                  type="password"
+                  autoComplete='off'
                   onChange={(e) => setApiKey(e.target.value)}
                 ></input>
-              </label>
             </div>
             <div class="vtmn-modal_content_actions">
               <button
