@@ -245,12 +245,18 @@ export default function Home({ status }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(server + '/api/check')
-  const status = await res.status
+  const apikey = process.env.OPENAI_API_KEY || ''
+  if (apikey.trim().length === 0) {
+    return {
+      props: {
+        status: 400
+      }
+    }
+  }
 
   return {
     props: {
-      status
+      status: 200
     }
   }
 }
