@@ -202,12 +202,13 @@ export default function Home({ status }) {
         <dialog
           open={modalOpen}
           class="vtmn-modal"
-          id="modal-1"
+          id="modal"
           role="dialog"
           aria-modal="true"
           aria-labelledby="vtmn-modal-title"
           aria-describedby="vtmn-modal-description"
         >
+      <div className={styles.Backdrop} ></div>
           <div class="vtmn-modal_content">
             <div class="vtmn-modal_content_title">
               <span
