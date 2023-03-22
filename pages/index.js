@@ -23,7 +23,6 @@ export default function Home() {
         setAsunto('')
         setMensaje('')
         setResult('')
-  
       }
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -98,7 +97,6 @@ export default function Home() {
 
               <div className="vtmn-select_container">
                 <label htmlFor="type">Tipo</label>
-
                 <select
                   name="type"
                   id="type"
@@ -125,33 +123,32 @@ export default function Home() {
                 <label className="vtmn-text-input_label" htmlFor="date">
                   Fecha
                 </label>
-                <div className="vtmn-text-input_container">
-                  <input
-                    type="date"
-                    className="vtmn-text-input"
-                    id="date"
-                    name="date"
-                    value={eventDate}
-                    onChange={(e) => setEventDate(e.target.value)}
-                    disabled={!['event', 'sustainability-event'].includes(type)}
-                  />
-                </div>
+                <input
+                  type="date"
+                  className="vtmn-text-input"
+                  id="date"
+                  name="date"
+                  value={eventDate}
+                  onChange={(e) => setEventDate(e.target.value)}
+                  disabled={!['event', 'sustainability-event'].includes(type)}
+                />
               </div>
 
               <label htmlFor="subject">Tema</label>
 
-              <input
+              <textarea
                 id="subject"
                 className="vtmn-text-input"
                 type="text"
                 name="subject"
+                multiple
                 placeholder="Idea principal a comunicar"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               />
               <input
                 type="submit"
-                className="vtmn-btn vtmn-btn_size--stretched"
+                className={`vtmn-btn vtmn-btn_size--stretched ${styles.btn}`}
                 value="Generar"
                 disabled={loading}
               />

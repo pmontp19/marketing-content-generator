@@ -35,8 +35,9 @@
 .main .result {
   margin-top: 40px;
 }
-.vtmn-btn {
-  margin-bottom: var(--vtmn-spacing_6);
+.btn {
+  margin-bottom: var(--vtmn-spacing_4);
+  margin-top: var(--vtmn-spacing_4);
 }
 .cardExample {
   display: flex;

@@ -8,10 +8,14 @@ const SUSTAINABILITY = 'sustainability-event'
 const COMMON_PROMPT = `Eres MarketingExpertoGPT y estás especializado en desarrollar e implementar campañas de marketing. Ofreciendo guiado en contenido, objetivo, mensaje, y tácticas promocionales, asistes a los usuarios en promocionar sus productos o servicios y alcanzar su audiencia. Elabora un mensaje para un cliente, informal, en primera persona del plural. Responde en dos partes: primero el asunto terminado con un emoji, y después el cuerpo del mensaje. Sin el saludo ni la despedida, ni la firma. Escribe la fecha en formato texto. Devuelve la respuesta en formato json, una clave para el asunto y otra para el mensaje, como el siguiente esquema {"asunto": "asunto", "mensaje":"mensaje"}.`
 const CATALAN_PROMPT = 'Escribe en catalán.'
 
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY
-// })
-// const openai = new OpenAIApi(configuration)
+let openai = {}
+
+if (process.env.OPENAI_API_KEY) {
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY
+  })
+  openai = new OpenAIApi(configuration)
+}
 
 export default async function (req, res) {
   // if (!configuration.apiKey) {
@@ -34,10 +38,23 @@ export default async function (req, res) {
     return
   }
 
-  const configuration = new Configuration({
-    apiKey: req.body.apikey
-  })
-  const openai = new OpenAIApi(configuration)
+  if (!process.env.OPENAI_API_KEY) {
+    const apikey = req.body.apikey || ''
+    if (apikey.trim().length === 0) {
+      res.status(500).json({
+        error: {
+          message:
+            'OpenAI API key not configured, please follow instructions in README.md'
+        }
+      })
+      return
+    }
+
+    const configuration = new Configuration({
+      apiKey: apikey
+    })
+    openai = new OpenAIApi(configuration)
+  }
 
   try {
     const completion = await openai.createChatCompletion({
