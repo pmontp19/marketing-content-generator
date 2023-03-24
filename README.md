@@ -1,9 +1,12 @@
-# OpenAI API Quickstart - Node.js example app
+# MailCraft Experiment App
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://platform.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+This is an example application using OpenAI API.
+🤔 Problem: marketing team spends too much time creating content. Also too difficult to hypercustomize for each user.
+💡 Solution: a tool that can help customize content and enables team to invest in other tasks with more value. Also, multilingual. 
+⌛ Why now? Easiness of development that enables this kind of personalization.
+💸 Obviusly, for this experiment, I didn't look into market size, competitors, budiness model...
 
-![Text box that says name my pet with an icon of a dog](https://user-images.githubusercontent.com/10623307/213887080-b2bc4645-7fdb-4dbd-ae42-efce00d0dc29.png)
-
+![mailcraft gif](https://user-images.githubusercontent.com/1065202/227474666-0d696492-39af-415d-8238-2ff7c5532070.gif)
 
 ## Setup
 
@@ -14,7 +17,7 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
 3. Navigate into the project directory
 
    ```bash
-   $ cd openai-quickstart-node
+   $ cd marketing-content-generator
    ```
 
 4. Install the requirements
@@ -41,4 +44,4 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
    $ npm run dev
    ```
 
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://platform.openai.com/docs/quickstart).
+You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! If no API Key provided in .env, user will be prompted to enter their own API Key.
